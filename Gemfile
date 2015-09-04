@@ -21,7 +21,6 @@ gem "twitter-bootstrap-rails"
 gem "faker"
 gem "responders"
 gem "traceroute"
-gem "skylight"
 
 group :development, :test do
   gem "pry-rails"

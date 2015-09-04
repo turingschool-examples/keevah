@@ -1,24 +1,16 @@
 ## The Pivot - Keevahh
 
-The Pivot is a 3 week project in Module 3 of the Turing School of Software and Design, focusing on taking an existing code base and 'pivoting' it to serve a new purpose.
-
-I focused on managing the asset pipeline, Git workflow, and ActiveRecord database queries.
-
 Keevahh is a micro-lending platform that allows both lenders and borrowers to interact. Borrowers are able to create a project or loan request and lenders are able to contribute to various projects.
 
 The project specifications can be found [here](https://github.com/turingschool/lesson_plans/blob/master/ruby_03-professional_rails_applications/the_pivot.markdown)
 
 [Find Us Here on Heroku](https://lendkeevahh.herokuapp.com/)
 
-## Code Status
+### Contributor Log
 
-[![Code Climate](https://codeclimate.com/github/neslom/the_pivot/badges/gpa.svg)](https://codeclimate.com/github/neslom/the_pivot)
-
-[![Build Status](https://travis-ci.org/neslom/the_pivot.svg?branch=master)](https://travis-ci.org/neslom/the_pivot)
-
-## Contributors
-
-Built by: [Markus Olsen](https://github.com/neslom), [Trey Tomlinson](https://github.com/treyx), and [Valentino Espinoza](https://github.com/xvalentino)
+* [Markus Olsen](https://github.com/neslom),
+* [Trey Tomlinson](https://github.com/treyx)
+* [Valentino Espinoza](https://github.com/xvalentino)
 
 ## License
 
