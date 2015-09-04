@@ -19,7 +19,7 @@
   <div class="row">
 
     <div class="col-md-8">
-      <img class="img-responsive" src=<%= @loan_request.picture_file_name %> alt="">
+      <img class="img-responsive" src=<%= @loan_request.image_url %> alt="">
     </div>
 
     <div class="col-md-4">
@@ -56,7 +56,7 @@
     <% @loan_request.related_projects.each do |p| %>
       <div class="col-sm-3 col-xs-6">
         <%= link_to loan_request_path(p) do %>
-          <img class="img-responsive portfolio-item" src=<%= @loan_request.picture_file_name %> alt="">
+          <img class="img-responsive portfolio-item" src=<%= @loan_request.image_url %> alt="">
           <p><%= p.title %></p>
         <% end %>
       </div>

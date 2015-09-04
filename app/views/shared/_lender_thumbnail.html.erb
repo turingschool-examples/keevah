@@ -3,7 +3,7 @@
     <% @loan_requests.each do |loan_request| %>
       <div class="col-sm-6 col-md-4 col-lg-4">
       <div class="thumbnail">
-        <img src=<%=loan_request.picture_file_name %>  alt="...">
+        <img src=<%=loan_request.image_url %>  alt="...">
         <div class="caption">
           <div class="thumbnail-label">
             <h3><%= truncate(loan_request.title, length: 20) %></h3>
