@@ -1,7 +1,7 @@
 <div class="container">
   <div class="row">
     <% @loan_requests.each do |loan_request| %>
-      <div class="col-sm-6 col-md-4 col-lg-4">
+      <div class="col-sm-6 col-md-4 col-lg-4 loan-request">
       <div class="thumbnail">
         <img src=<%=loan_request.image_url %>  alt="...">
         <div class="caption">
@@ -10,7 +10,7 @@
           </div>
           <p><%= truncate(loan_request.description, length: 30) %></p>
           <p>
-            <%= link_to "About", loan_request_path(loan_request), class: "btn btn-default" %>
+            <%= link_to "About", loan_request_path(loan_request), class: "btn btn-default lr-about" %>
             <%= link_to "Contribute $25", cart_path(loan_request: loan_request.id.to_i, amount: 25), method: 'post', class: "btn btn-info pull-right" %>
           </p>
           <br>
