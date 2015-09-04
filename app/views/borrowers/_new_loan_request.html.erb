@@ -6,6 +6,7 @@
   <%= bootstrap_form_for(:loan_request, url: loan_requests_path) do |f| %>
     <%= f.text_field :title %>
     <%= f.text_area :description %>
+    <%= f.text_field :image_url %>
     <%= f.date_field :requested_by_date %>
     <%= f.date_field :repayment_begin_date %>
     <%= f.select :repayment_rate, [["Monthly", "monthly"], ["Weekly", "weekly"]], {}, { class: "selectpicker" } %>

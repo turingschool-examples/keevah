@@ -43,6 +43,7 @@ class LoanRequestsController < ApplicationController
     params.require(:loan_request).permit(:title,
                                          :description,
                                          :requested_by_date,
+                                         :image_url,
                                          :repayment_begin_date,
                                          :repayment_rate,
                                          :amount)

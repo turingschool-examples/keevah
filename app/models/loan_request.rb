@@ -10,6 +10,11 @@ class LoanRequest < ActiveRecord::Base
   belongs_to :user
   enum status: %w(active funded)
   enum repayment_rate: %w(monthly weekly)
+  before_create :assign_default_image
+
+  def assign_default_image
+    self.image_url = DefaultImages.random unless self.image_url
+  end
 
   def owner
     self.user.name
