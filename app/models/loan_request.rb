@@ -81,4 +81,8 @@ class LoanRequest < ActiveRecord::Base
       User.find(user_id)
     end
   end
+
+  def related_projects
+    (categories.flat_map(&:loan_requests) - [self]).shuffle.take(4)
+  end
 end

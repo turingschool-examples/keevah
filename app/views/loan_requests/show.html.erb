@@ -53,13 +53,14 @@
       <h3 class="page-header">Related Projects</h3>
     </div>
 
-    <% 4.times do %>
+    <% @loan_request.related_projects.each do |p| %>
       <div class="col-sm-3 col-xs-6">
-      <a href="#">
-        <img class="img-responsive portfolio-item" src="http://www.kiva.org/img/w632/1847429.jpg" alt="">
-      </a>
-    </div>
-  <% end %>
+        <%= link_to loan_request_path(p) do %>
+          <img class="img-responsive portfolio-item" src=<%= @loan_request.picture_file_name %> alt="">
+          <p><%= p.title %></p>
+        <% end %>
+      </div>
+    <% end %>
 
   </div>
   <!-- /.row -->
