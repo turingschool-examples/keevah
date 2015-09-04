@@ -4,7 +4,6 @@ gem "pg"
 gem "sass-rails", "~> 5.0"
 gem "uglifier", ">= 1.3.0"
 gem "coffee-rails", "~> 4.1.0"
-gem "rails_12factor", group: :production
 gem "puma"
 gem "jquery-rails"
 gem "turbolinks"
@@ -21,6 +20,7 @@ gem "twitter-bootstrap-rails"
 gem "faker"
 gem "responders"
 gem "traceroute"
+gem "rails_12factor", group: :production
 
 group :development, :test do
   gem "pry-rails"
@@ -30,14 +30,11 @@ group :development, :test do
   gem "capybara"
   gem "launchy"
   gem "database_cleaner"
-  gem "selenium-webdriver"
 end
 
 group :development do
-  gem "spring"
   gem "better_errors"
   gem "binding_of_caller"
-  gem "brakeman", :require => false
 end
 
 group :test do
