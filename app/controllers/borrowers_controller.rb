@@ -13,7 +13,7 @@ class BorrowersController < ApplicationController
       redirect_to borrower_path(user)
     else
       flash[:error] = "Something went wrong. Please try again"
-      render :new
+      render partial: "borrowers/new"
     end
   end
 
