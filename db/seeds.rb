@@ -1,9 +1,9 @@
 class Seed
   def run
     create_known_users
-    create_borrowers(10)
-    create_lenders(100)
-    create_loan_requests_for_each_borrower(20)
+    create_borrowers(30000)
+    create_lenders(200000)
+    create_loan_requests_for_each_borrower(16)
     create_categories
     create_orders
   end
@@ -51,7 +51,7 @@ class Seed
   end
 
   def create_categories
-    ["agriculture", "community", "education"].each do |cat|
+    ["raspberry", "honeydew", "tomato", "apple", "banana", "peach", "orange", "plum", "mango", "grape", "tangerine", "lemon", "coconut", "strawberry", "blueberry"].each do |cat|
       Category.create(title: cat, description: cat + " stuff")
     end
     put_requests_in_categories
