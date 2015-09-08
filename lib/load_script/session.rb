@@ -1,5 +1,4 @@
 require "logger"
-require "pry"
 require "capybara"
 require 'capybara/poltergeist'
 require "faker"
