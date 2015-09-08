@@ -13,7 +13,7 @@ class LoanRequest < ActiveRecord::Base
   before_create :assign_default_image
 
   def assign_default_image
-    self.image_url = DefaultImages.random if self.image_url.empty?
+    self.image_url = DefaultImages.random if self.image_url.nil?
   end
 
   def owner
