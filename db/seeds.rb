@@ -105,4 +105,16 @@ class Seed
   end
 end
 
-Seed.new.run
+class ProdSeed
+
+end
+
+
+
+
+
+if Rails.env.production?
+  ProdSeed.new.run
+else
+  Seed.new.run
+end
