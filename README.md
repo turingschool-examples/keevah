@@ -6,6 +6,18 @@ The project specifications can be found [here](https://github.com/turingschool/l
 
 [Find Us Here on Heroku](https://lendkeevahh.herokuapp.com/)
 
+## Working With Data Dumps
+
+### Pushing Data to Heroku
+
+1. Create heroku instance (heroku create)
+2. Use `heroku pg:push` to export your local data into
+the instance. For example:
+
+```
+$ heroku pg:push the_pivot_development DATABASE_URL
+```
+
 ### Contributor Log
 
 * [Markus Olsen](https://github.com/neslom),
