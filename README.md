@@ -8,7 +8,21 @@ The project specifications can be found [here](https://github.com/turingschool/l
 
 ## Working With Data Dumps
 
+### Loading the pre-seeded DB dump
+
+This project includes a rake task to load a pre-seeded
+DB dump with all the data you will need. It is currently
+stored on Turing's dropbox. To download it, run
+use this rake task:
+
+```
+$ rake db:pg_restore
+```
+
 ### Pushing Data to Heroku
+
+Once you've populated your local DB, you can also push those
+records to a heroku instance.
 
 1. Create heroku instance (heroku create)
 2. Use `heroku pg:push` to export your local data into
