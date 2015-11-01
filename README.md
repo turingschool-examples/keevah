@@ -12,7 +12,7 @@ The project specifications can be found [here](https://github.com/turingschool/l
 
 This project includes a rake task to load a pre-seeded
 DB dump with all the data you will need. It is currently
-stored on Turing's dropbox. To download it, run
+stored on Turing's dropbox. To download and import it,
 use this rake task:
 
 ```
