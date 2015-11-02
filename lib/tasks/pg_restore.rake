@@ -6,7 +6,7 @@ namespace :db do
     `rm /tmp/scale_up.sql`
     dump_url = "https://www.dropbox.com/s/73t5u75jlw181aa/scale_up_keevah_db_dump.sql?dl=1"
     puts "** Downloading Scale Up SQL Dump **"
-    `curl #{dump_url} > /tmp/scale_up.sql`
+    `curl -L #{dump_url} > /tmp/scale_up.sql`
     puts "** Loading Scale Up SQL Dump **"
     `psql the_pivot_development < /tmp/scale_up.sql`
     puts "** Complete! Loaded Records **"
