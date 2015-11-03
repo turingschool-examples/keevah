@@ -22,10 +22,6 @@ gem "responders"
 gem "traceroute"
 gem "rails_12factor", group: :production
 gem "populator"
-gem "pry"
-gem 'capybara'
-gem 'faker'
-
 
 group :development, :test do
   gem "pry-rails"
