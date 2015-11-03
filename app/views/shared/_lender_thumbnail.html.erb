@@ -23,6 +23,6 @@
         </div>
       </div>
     <% end %>
-    <%= will_paginate @loan_requests %>
+    <%= will_paginate @loan_requests, renderer: BootstrapPagination::Rails %>
   </div>
 </div>

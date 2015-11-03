@@ -28,6 +28,7 @@ gem "populator"
 
 gem "skylight"
 gem 'will_paginate'
+gem 'will_paginate-bootstrap'
 gem 'derailed', group: :development
 gem 'newrelic_rpm'
 
