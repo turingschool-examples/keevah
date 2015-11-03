@@ -6,7 +6,7 @@ class User < ActiveRecord::Base
   validates :email, uniqueness: true
   validates_format_of :email, with: /.+@.+\..+/i
 
-  enum role: %w(lender borrower admin)
+  enum role: {lender: 0, borrower: 1, admin: 2}
 
   has_many :orders
   has_many :loan_requests
