@@ -1,4 +1,4 @@
-require "pry"
+# require "pry"
 
 namespace :db do
   desc "Reload the development DB from a pre-seeded db dump"
