@@ -266,7 +266,6 @@ DEPENDENCIES
   pg
   poltergeist
   populator
-  pry
   pry-rails
   puma
   rails (= 4.2.0)
