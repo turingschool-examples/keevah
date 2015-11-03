@@ -28,6 +28,7 @@ gem "populator"
 gem "skylight"
 
 gem 'derailed', group: :development
+gem 'newrelic_rpm'
 
 group :development, :test do
   gem "pry-rails"
