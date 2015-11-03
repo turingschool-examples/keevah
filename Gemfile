@@ -14,7 +14,7 @@ gem "jbuilder", "~> 2.0"
 gem "jquery-turbolinks"
 gem "sdoc", "~> 0.4.0", group: :doc
 gem "bcrypt", "~> 3.1.7"
-# gem "paperclip"
+gem "paperclip"
 gem "bootstrap_form"
 gem "font-awesome-rails"
 gem "therubyracer"
@@ -25,8 +25,9 @@ gem "responders"
 gem "traceroute"
 gem "rails_12factor", group: :production
 gem "populator"
-gem "skylight"
 
+gem "skylight"
+gem 'will_paginate'
 gem 'derailed', group: :development
 gem 'newrelic_rpm'
 
