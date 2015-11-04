@@ -51,6 +51,6 @@ class LoanRequestsController < ApplicationController
   end
 
   def set_loan_request
-    @loan_request = LoanRequest.includes(:categories).find(params[:id])
+    @loan_request = LoanRequest.includes(:categories, :users).find(params[:id])
   end
 end
