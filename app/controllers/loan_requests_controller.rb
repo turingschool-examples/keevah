@@ -46,7 +46,8 @@ class LoanRequestsController < ApplicationController
                                          :image_url,
                                          :repayment_begin_date,
                                          :repayment_rate,
-                                         :amount)
+                                         :amount,
+                                         :image_url)
   end
 
   def set_loan_request
