@@ -25,6 +25,8 @@ gem "responders"
 gem "traceroute"
 gem "rails_12factor", group: :production
 gem "populator"
+gem "bullet", :group => "development"
+gem "ruby-growl"
 
 gem "skylight"
 gem 'will_paginate'
