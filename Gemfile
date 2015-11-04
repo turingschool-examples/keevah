@@ -1,4 +1,7 @@
 source "https://rubygems.org"
+
+ruby "2.2.2"
+
 gem "rails", "4.2.0"
 gem "pg"
 gem "sass-rails", "~> 5.0"
@@ -22,6 +25,14 @@ gem "responders"
 gem "traceroute"
 gem "rails_12factor", group: :production
 gem "populator"
+gem "bullet", :group => "development"
+gem "ruby-growl"
+
+gem "skylight"
+gem 'will_paginate'
+gem 'will_paginate-bootstrap'
+gem 'derailed', group: :development
+gem 'newrelic_rpm'
 
 group :development, :test do
   gem "pry-rails"
