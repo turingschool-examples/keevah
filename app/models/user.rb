@@ -15,15 +15,15 @@ class User < ActiveRecord::Base
   before_save :format_name
 
   def format_name
-    write_attribute(:name, name.to_s.titleize)
+    @format_name ||= write_attribute(:name, name.to_s.titleize)
   end
 
   def total_contributed
-    loan_requests_contributors.sum(:contribution)
+    @total_contributed ||= loan_requests_contributors.sum(:contribution)
   end
 
   def total_contributions_received
-    loan_requests.sum(:contributed)
+    @total_contributions_received ||= loan_requests.sum(:contributed)
   end
 
   def contributed_to(loan_request)

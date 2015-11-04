@@ -5,6 +5,7 @@ class LoanRequestsController < ApplicationController
     @loan_requests = LoanRequest.page(params[:page]).order('created_at DESC')
   end
 
+
   def create
     loan_request = current_user.loan_requests.new(loan_request_params)
 
@@ -50,6 +51,6 @@ class LoanRequestsController < ApplicationController
   end
 
   def set_loan_request
-    @loan_request = LoanRequest.find(params[:id])
+    @loan_request = LoanRequest.includes(:categories).find(params[:id])
   end
 end

@@ -20,5 +20,6 @@
 
 <br>
 
+<%= will_paginate @loan_requests, renderer: BootstrapPagination::Rails %>
 <%= render "shared/lender_thumbnail" %>
-<%= will_paginate @loan_requests %>
+<%= will_paginate @loan_requests, renderer: BootstrapPagination::Rails %>

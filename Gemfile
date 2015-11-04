@@ -23,6 +23,7 @@ gem "populator"
 gem "skylight"
 gem "newrelic_rpm"
 gem "will_paginate",  "~> 3.0.6"
+gem "will_paginate-bootstrap"
 gem "rails_12factor",   group: :production
 gem "sdoc", "~> 0.4.0", group: :doc
 
