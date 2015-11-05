@@ -81,6 +81,6 @@ class LoanRequest < ActiveRecord::Base
   end
 
   def related_projects
-    LoanRequest.joins(:loan_requests_categories).where(loan_requests_categories: {category_id: 3}).order("RANDOM()").limit(4)
+    LoanRequest.joins(:categories).where(categories: {id: self.categories.first.id}).order("RANDOM()").limit(4)
   end
 end
