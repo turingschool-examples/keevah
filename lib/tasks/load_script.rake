@@ -6,19 +6,17 @@ namespace :load_script do
     if `which phantomjs`.empty?
       raise "PhantomJS not found. Make sure you have it installed. Try: 'brew install phantomjs'"
     end
-    LoadScript::Session.new(ARGV[1]).run
+
+
+    6.times.map do
+      Thread.new do
+        if ARGV[1]
+          Thread.new(LoadScript::Session.new(ARGV[1]).run)
+        else
+          Thread.new( LoadScript::Session.new().run)
+        end
+      end
+    end.map(&:join)
   end
 end
 
-# TODO: Add concurrency factor:
-#if __FILE__ == $0
-  #1.times.map do
-    #Thread.new do
-      #if ARGV[0] #host
-        #Session.new(ARGV[0]).run
-      #else
-        #Session.new.run
-      #end
-    #end
-  #end.map(&:join)
-#end
