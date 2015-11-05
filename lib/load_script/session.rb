@@ -46,20 +46,22 @@ module LoadScript
     end
 
     def actions
-      [:browse_loan_requests, :sign_up_as_lender]
+      [:browse_loan_requests, :sign_up_as_lender, :sign_up_as_borrower,
+      :user_browse_loans_requests
+      ]
     end
 
-# Required User Paths
-#
-# Anonymous user browses loan requests
-# User browses pages of loan requests
-# User browses categories
-# User browses pages of categories
-# User views individual loan request
-## New user signs up as lender
-## New user signs up as borrower
-# New borrower creates loan request
-# Lender makes loan
+    # Required User Paths
+
+    ## Anonymous user browses loan requests
+    ## User browses pages of loan requests
+    # User browses categories
+    # User browses pages of categories
+    # User views individual loan request
+    ## New user signs up as lender
+    ## New user signs up as borrower
+    # New borrower creates loan request
+    # Lender makes loan
 
 
     def log_in(email="demo+horace@jumpstartlab.com", pw="password")
@@ -69,6 +71,18 @@ module LoadScript
       session.fill_in("email_address", with: email)
       session.fill_in("password", with: pw)
       session.click_link_or_button("Login")
+    end
+
+    def user_browse_loans_requests(email="demo+horace@jumpstartlab.com", pw="password")
+      log_out
+      session.visit host
+      session.click_link("Log In")
+      session.fill_in("email_address", with: email)
+      session.fill_in("password", with: pw)
+      session.click_link_or_button("Login")
+
+      session.visit "#{host}/browse"
+      session.all(".lr-about").sample.click
     end
 
     def browse_loan_requests
