@@ -47,4 +47,3 @@ staging:
 
 production:
   <<: *default_settings
-  app_name: scale_up (Production)
