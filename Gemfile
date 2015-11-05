@@ -27,6 +27,7 @@ gem "rails_12factor", group: :production
 gem "populator"
 gem "bullet", :group => "development"
 gem "ruby-growl"
+gem "figaro"
 
 gem "skylight"
 gem 'will_paginate'

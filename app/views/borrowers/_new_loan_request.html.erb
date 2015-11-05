@@ -10,7 +10,7 @@
     <%= f.date_field :requested_by_date %>
     <%= f.date_field :repayment_begin_date %>
     <%= f.select :repayment_rate, [["Monthly", "monthly"], ["Weekly", "weekly"]], {}, { class: "selectpicker" } %>
-    <%= f.select :category, [["Agriculture", "agriculture"], ["Community", "community"], ["Education", "education"]], { prompt: "Select category" }, { class: "selectpicker" } %>
+    <%= f.select :category, [["Agriculture", "Agriculture"], ["Community", "Community"], ["Education", "Education"]], { prompt: "Select category" }, { class: "selectpicker" } %>
     <%= f.text_field :amount, prepend: "$", append: ".00" %>
   <div class="modal-footer">
     <%= f.submit "Submit" %>
