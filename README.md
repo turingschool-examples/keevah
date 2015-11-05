@@ -1,3 +1,4 @@
+[![Stories in Ready](https://badge.waffle.io/davemaurer/keevah.png?label=ready&title=Ready)](https://waffle.io/davemaurer/keevah)
 ## The Pivot - Keevahh
 
 Keevahh is a micro-lending platform that allows both lenders and borrowers to interact. Borrowers are able to create a project or loan request and lenders are able to contribute to various projects.
