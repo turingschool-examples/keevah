@@ -3,6 +3,7 @@ class LoanRequestsController < ApplicationController
 
   def index
     @loan_requests = LoanRequest.paginate(:page => params[:page])
+    @categories = Category.all
   end
 
   def create

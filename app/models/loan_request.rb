@@ -81,6 +81,6 @@ class LoanRequest < ActiveRecord::Base
   end
 
   def related_projects
-    (categories.flat_map(&:loan_requests) - [self]).shuffle.take(4)
+    @related_projects ||= LoanRequest.joins(:loan_requests_categories).where(loan_requests_categories: {category_id: self.categories.sample.id}).order("RANDOM()").limit(4)
   end
 end

@@ -15,7 +15,7 @@
             <p><%= truncate(loan_request.description, length: 30) %></p>
             <p>
             <%= link_to "About", loan_request_path(loan_request), class: "btn btn-default lr-about" %>
-            <%= link_to "Contribute $25", cart_path(loan_request: loan_request.id.to_i, amount: 25), method: 'post', class: "btn btn-info pull-right" %>
+            <%= link_to "Contribute $25", cart_path(loan_request: loan_request.id.to_i, amount: 25), method: 'post', class: "lr-contribute btn btn-info pull-right" %>
             </p>
             <br>
             <div class="progress">

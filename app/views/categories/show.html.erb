@@ -9,9 +9,9 @@
         Filter by Category
         <span class="caret"></span>
       </button>
-      <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+      <ul class="dropdown-menu" aria-labelledby="categories_dropdown">
         <% @categories.each do |category| %>
-          <li class=<%= category.title %>> <%= link_to category.title, category_path(category)%></li>
+          <li class="<%= category.title %>"> <%= link_to category.title, category_path(category), id: "category-#{category.id}"%></li>
           <li role="separator" class="divider"></li>
         <% end %>
       </ul>
