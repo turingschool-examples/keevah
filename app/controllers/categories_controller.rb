@@ -4,6 +4,7 @@ class CategoriesController < ApplicationController
   end
 
   def show
-    @category = Category.find(params[:id])
+    @loan_requests = LoanRequest.joins(:loan_requests_categories).where(loan_requests_categories: {category_id: params[:id] }).paginate(:page => params[:page])
+    @categories    = Category.all
   end
 end
