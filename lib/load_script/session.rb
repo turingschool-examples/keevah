@@ -53,20 +53,21 @@ module LoadScript
         :user_browse_loans_requests,
         :new_borrower_create_loan_request,
         :lender_makes_loan,
-#        :user_browses_categories,
         :user_browses_category_pages
       ]
     end
 
-    # def user_browses_categories
-    # end
 
     def user_browses_category_pages
       puts 'User browsing category pages'
       log_out
       log_in
 
-      session.find("#category-1").click
+      session.visit "categories/1"
+      session.visit "categories/2"
+      session.visit "categories/3"
+      session.visit "categories/4"
+      # session.find("#category-1").click
     end
 
     def user_browse_loans_requests(email="jorge@example.com", pw="password")

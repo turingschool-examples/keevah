@@ -28,12 +28,14 @@ gem "populator"
 gem "bullet", :group => "development"
 gem "ruby-growl"
 gem "figaro"
+gem "rack-mini-profiler"
 
 gem "skylight"
 gem 'will_paginate'
 gem 'will_paginate-bootstrap'
 gem 'derailed', group: :development
 gem 'newrelic_rpm'
+gem 'dalli'
 
 group :development, :test do
   gem "pry-rails"
@@ -49,7 +51,9 @@ end
 group :development do
   gem "better_errors"
   gem "binding_of_caller"
+  gem "quiet_assets"
 end
+
 
 group :test do
   gem "simplecov", :require => false
