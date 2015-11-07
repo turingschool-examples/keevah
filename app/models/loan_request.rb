@@ -81,6 +81,6 @@ class LoanRequest < ActiveRecord::Base
   end
 
   def related_projects
-    (categories.flat_map(&:loan_requests) - [self]).shuffle.take(4)
+    categories.sample.loan_requests.limit(4)
   end
 end
