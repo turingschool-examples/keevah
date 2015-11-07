@@ -11,13 +11,13 @@ Capybara.default_driver = :poltergeist
 
 module LoadScript
   class Session
-    ACTIONS = [:browse_loan_requests, :sign_up_as_lender]
+    ACTIONS = [:browse_loan_requests, :sign_up_as_lender, :sign_up_as_borrower]
 
     def self.run(host)
       ACTIONS.each do |action|
         threads = []
         benchmarked_times = []
-        8.times do
+        4.times do
           threads << Thread.new do
             difference = Benchmark.realtime do
               session = new(action)
@@ -79,7 +79,7 @@ module LoadScript
     def log_out
       session.visit host
       if session.has_content?("Log out")
-        session.find("#logout").click
+        session.click_on("Log out")
       end
     end
 
@@ -94,27 +94,25 @@ module LoadScript
     def sign_up_as_lender(name = new_user_name)
       log_out
       session.find("#sign-up-dropdown").click
-      session.find("#sign-up-as-lender").click
-      session.within("#lenderSignUpModal") do
-        session.fill_in("user_name", with: name)
-        session.fill_in("user_email", with: new_user_email(name))
-        session.fill_in("user_password", with: "password")
-        session.fill_in("user_password_confirmation", with: "password")
-        session.click_link_or_button "Create Account"
-      end
+      session.click_on("Sign Up As Lender")
+      session.fill_in("Name", with: name)
+      session.fill_in("Email", with: new_user_email(name))
+      session.fill_in("Password", with: "password")
+      session.fill_in("Confirm Password", with: "password")
+      session.click_on "Create Account"
     end
 
     def sign_up_as_borrower(name = new_user_name)
       log_out
       session.find("#sign-up-dropdown").click
-      session.find("#sign-up-as-borrower").click
-      session.within("#borrowerSignUpModal") do
-        session.fill_in("user_name", with: name)
-        session.fill_in("user_email", with: new_user_email(name))
-        session.fill_in("user_password", with: "password")
-        session.fill_in("user_password_confirmation", with: "password")
-        session.click_link_or_button "Create Account"
-      end
+      session.click_on("Sign Up As Borrower")
+      # session.within("#borrowerSignUpModal") do
+      session.fill_in("Name", with: name)
+      session.fill_in("Email", with: new_user_email(name))
+      session.fill_in("Password", with: "password")
+      session.fill_in("Confirm Password", with: "password")
+      session.click_on "Create Account"
+      # end
     end
 
     def categories
