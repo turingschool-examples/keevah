@@ -18,7 +18,6 @@ module LoadScript
                :browse_loan_request_pages,
                :sign_up_as_lender,
                :sign_up_as_borrower,
-               :browse_loan_requests_by_category,
                :browse_categories,
                :browse_categories_pages
               ]
@@ -104,11 +103,6 @@ module LoadScript
       "#{Faker::Lorem.sentence}"
     end
 
-    def browse_loan_requests
-      session.visit "#{host}/browse"
-      session.all(".lr-about").sample.click
-    end
-
     def sign_up_as_lender(name = new_user_name)
       log_out
       session.find("#sign-up-dropdown").click
@@ -145,13 +139,16 @@ module LoadScript
       session.click_on("Submit")
     end
 
+    def browse_loan_requests
+      session.visit "#{host}/browse"
+      session.all(".lr-about").sample.click
+    end
+
     def browse_categories
-      logout
       session.visit "#{host}/browse?category=#{categories.sample}"
     end
 
     def browse_categories_pages
-      logout
       session.visit "#{host}/browse?category=#{categories.sample}&page=#{rand(200)}"
     end
 
