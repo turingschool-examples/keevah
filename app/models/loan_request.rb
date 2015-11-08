@@ -1,7 +1,7 @@
 class LoanRequest < ActiveRecord::Base
   validates :title, :description, :amount,
-    :requested_by_date, :repayment_begin_date,
-    :repayment_rate, :contributed, presence: true
+            :requested_by_date, :repayment_begin_date,
+            :repayment_rate, :contributed, presence: true
   has_many :orders
   has_many :loan_requests_contributors
   has_many :users, through: :loan_requests_contributors
@@ -81,6 +81,6 @@ class LoanRequest < ActiveRecord::Base
   end
 
   def related_projects
-    (categories.flat_map(&:loan_requests) - [self]).shuffle.take(4)
+    categories.sample.loan_requests.limit(4)
   end
 end

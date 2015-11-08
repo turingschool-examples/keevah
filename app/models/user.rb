@@ -6,7 +6,7 @@ class User < ActiveRecord::Base
   validates :email, uniqueness: true
   validates_format_of :email, with: /.+@.+\..+/i
 
-  enum role: %w(lender borrower admin)
+  enum role: {lender: 0, borrower: 1, admin: 2}
 
   has_many :orders
   has_many :loan_requests
@@ -15,15 +15,15 @@ class User < ActiveRecord::Base
   before_save :format_name
 
   def format_name
-    write_attribute(:name, name.to_s.titleize)
+    @format_name ||= write_attribute(:name, name.to_s.titleize)
   end
 
   def total_contributed
-    loan_requests_contributors.sum(:contribution)
+    @total_contributed ||= loan_requests_contributors.sum(:contribution)
   end
 
   def total_contributions_received
-    loan_requests.sum(:contributed)
+    @total_contributions_received ||= loan_requests.sum(:contributed)
   end
 
   def contributed_to(loan_request)
