@@ -14,7 +14,10 @@ Capybara.default_driver = :poltergeist
 
 module LoadScript
   class Session
-    ACTIONS = [:browse_loan_requests, :sign_up_as_lender, :sign_up_as_borrower]
+    ACTIONS = [:browse_loan_requests,
+               :sign_up_as_lender,
+               :sign_up_as_borrower,
+              ]
 
     def self.run(host)
       ACTIONS.each do |action|
@@ -74,11 +77,6 @@ module LoadScript
       session.click_link_or_button("Login")
     end
 
-    def browse_loan_requests
-      session.visit "#{host}/browse"
-      session.all(".lr-about").sample.click
-    end
-
     def log_out
       session.visit host
       if session.has_content?("Log out")
@@ -92,6 +90,19 @@ module LoadScript
 
     def new_user_email(name)
       "TuringPivotBots+#{name.split.join}@gmail.com"
+    end
+
+    def new_loan_request_name
+      "#{Faker::Commerce.product_name} #{Time.now.to_i}"
+    end
+
+    def new_loan_request_description
+      "#{Faker::Lorem.sentence}"
+    end
+
+    def browse_loan_requests
+      session.visit "#{host}/browse"
+      session.all(".lr-about").sample.click
     end
 
     def sign_up_as_lender(name = new_user_name)
@@ -114,10 +125,22 @@ module LoadScript
       session.fill_in("Email", with: new_user_email(name))
       session.fill_in("Password", with: "password")
       session.fill_in("Confirm Password", with: "password")
-      session.click_on "Create Account"
+      session.click_on("Create Account")
       # end
     end
 
+    def new_loan_request
+      sign_up_as_borrower
+      session.click_on("Create Loan Request")
+      session.fill_in("Title", with: new_loan_request_name)
+      session.fill_in("Description", with: new_loan_request_description)
+      session.fill_in("Amount", with: 50)
+      session.fill_in("loan_request_requested_by_date", with: Time.now.strftime("%m/%d/%Y"))
+      session.fill_in("loan_reqeust_repayment_begin_date", with: 30.days.from_now.strftime("%m/%d/%Y"))
+      session.select(categories[0], from: "loan_request_category")
+      session.click_on("Submit")
+    end
+    
     def categories
       ["Agriculture", "Education", "Housing"]
     end
