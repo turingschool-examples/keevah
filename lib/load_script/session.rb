@@ -140,7 +140,20 @@ module LoadScript
       session.select(categories[0], from: "loan_request_category")
       session.click_on("Submit")
     end
-    
+
+    def browse_categories
+      session.visit ""
+    end
+
+    def browse_loan_requests_by_category
+      log_out
+      log_in
+      session.click_on("Lend")
+      session.click_on()
+
+    end
+
+
     def categories
       ["Agriculture", "Education", "Housing"]
     end
