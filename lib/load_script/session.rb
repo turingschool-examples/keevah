@@ -15,8 +15,12 @@ Capybara.default_driver = :poltergeist
 module LoadScript
   class Session
     ACTIONS = [:browse_loan_requests,
+               :browse_loan_request_pages,
                :sign_up_as_lender,
                :sign_up_as_borrower,
+               :browse_loan_requests_by_category,
+               :browse_categories,
+               :browse_categories_pages
               ]
 
     def self.run(host)
@@ -142,17 +146,18 @@ module LoadScript
     end
 
     def browse_categories
-      session.visit ""
+      logout
+      session.visit "#{host}/browse?category=#{categories.sample}"
     end
 
-    def browse_loan_requests_by_category
-      log_out
-      log_in
-      session.click_on("Lend")
-      session.click_on()
-
+    def browse_categories_pages
+      logout
+      session.visit "#{host}/browse?category=#{categories.sample}&page=#{rand(200)}"
     end
 
+    def browse_loan_request_pages
+      session.visit "#{host}/browse?page=#{rand(200)}"
+    end
 
     def categories
       ["Agriculture", "Education", "Housing"]
