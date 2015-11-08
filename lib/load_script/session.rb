@@ -19,7 +19,8 @@ module LoadScript
                :sign_up_as_lender,
                :sign_up_as_borrower,
                :browse_categories,
-               :browse_categories_pages
+               :browse_categories_pages,
+               :new_loan_request
               ]
 
     def self.run(host)
