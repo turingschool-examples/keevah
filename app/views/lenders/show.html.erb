@@ -23,6 +23,7 @@
       </thead>
       <tbody>
         <% @lender.projects.includes(:user).each do |project| %>
+      <% cache project do %>
       <tr>
         <td class="text-center"><%= @lender.contributed_to(project).newest_contribution %></td>
         <td class="text-center"><%= project.title %></td>
@@ -32,6 +33,7 @@
         <td class="text-center"><%= project.repayment_begin %></td>
         <td class="text-center"><%= project.repayment_rate.capitalize %></td>
       </tr>
+      <% end %>
       <% end %>
       </tbody>
     </table>
