@@ -2,14 +2,15 @@ class LoanRequestsController < ApplicationController
   before_action :set_loan_request, only: [:update, :show]
 
   def index
-    @loan_requests = LoanRequest.all
+    @loan_requests = LoanRequest.page(params[:page]).order('created_at DESC')
   end
+
 
   def create
     loan_request = current_user.loan_requests.new(loan_request_params)
 
     if loan_request.save
-      Category.find_by(title: params[:loan_request][:category]).loan_requests << loan_request
+      Category.find_by(title: params[:loan_request][:category].capitalize).loan_requests << loan_request
       flash[:notice] = "Loan Request Created"
       redirect_to(:back)
     else
@@ -50,6 +51,6 @@ class LoanRequestsController < ApplicationController
   end
 
   def set_loan_request
-    @loan_request = LoanRequest.find(params[:id])
+    @loan_request = LoanRequest.includes(:categories).find(params[:id])
   end
 end
