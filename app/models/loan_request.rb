@@ -81,7 +81,6 @@ class LoanRequest < ActiveRecord::Base
   end
 
   def related_projects
-    binding.pry
     cache_name = "related_projects-#{id}"
     if cache_empty?(cache_name)
       projects = LoanRequest.joins(:loan_requests_categories)
@@ -93,6 +92,10 @@ class LoanRequest < ActiveRecord::Base
     end
 
     Rails.cache.fetch(cache_name)
+  end
+
+  def self.cache_count
+    Rails.cache.fetch('total_loan_requests', count)
   end
 
   private

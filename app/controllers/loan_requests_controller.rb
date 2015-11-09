@@ -2,7 +2,7 @@ class LoanRequestsController < ApplicationController
   before_action :set_loan_request, only: [:edit, :update, :show]
 
   def index
-    @loan_requests ||= LoanRequest.paginate(:page => params[:page])
+    @loan_requests ||= LoanRequest.paginate(:page => params[:page], total_entries: LoanRequest.cache_count)
     @categories      = categories
   end
 
