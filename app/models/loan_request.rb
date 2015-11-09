@@ -95,9 +95,10 @@ class LoanRequest < ActiveRecord::Base
   end
 
   def self.cache_count
-    Rails.cache.fetch('total_loan_requests') do
-      count
+    if Rails.cache.fetch('loan_requests_count').nil?
+      Rails.cache.write('loan_requests_count', count)
     end
+    Rails.cache.fetch('loan_requests_count')
   end
 
   private
