@@ -95,7 +95,9 @@ class LoanRequest < ActiveRecord::Base
   end
 
   def self.cache_count
-    Rails.cache.fetch('total_loan_requests', count)
+    Rails.cache.fetch('total_loan_requests') do
+      count
+    end
   end
 
   private
