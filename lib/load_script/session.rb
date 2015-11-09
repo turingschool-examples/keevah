@@ -57,17 +57,28 @@ module LoadScript
       ]
     end
 
-
     def user_browses_category_pages
+    categories = [
+      "Agriculture",
+      "Education",
+      "Water and Sanitation",
+      "Youth",
+      "Conflict Zones",
+      "Transportation",
+      "Housing",
+      "Banking and Finance",
+      "Manufacturing",
+      "Food and Nutrition",
+      "Vulnerable Groups"
+    ]
+
       puts 'User browsing category pages'
       log_out
       log_in
+      session.visit "#{host}/browse"
 
-      session.visit "categories/1"
-      session.visit "categories/2"
-      session.visit "categories/3"
-      session.visit "categories/4"
-      # session.find("#category-1").click
+      session.find('#category_dropdown').click
+      session.click_link categories.sample
     end
 
     def user_browse_loans_requests(email="jorge@example.com", pw="password")
