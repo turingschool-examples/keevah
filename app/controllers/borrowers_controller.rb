@@ -17,8 +17,11 @@ class BorrowersController < ApplicationController
     end
   end
 
+
   def show
     @loan_requests = LoanRequest.where(user_id: params[:id])
+      .paginate(page: params[:page], per_page: 9)
+    @categories = categories
   end
 
   private
@@ -36,4 +39,16 @@ class BorrowersController < ApplicationController
   end
 
   helper_method :this_borrower?
+
+  def categories
+    if cache_empty?('loan_requests_categories')
+      Rails.cache.write('loan_requests_categories', Category.all, expires_in: 60.minutes)
+    end
+
+    Rails.cache.fetch('loan_requests_categories')
+  end
+
+  def cache_empty?(key)
+    Rails.cache.fetch(key).nil?
+  end
 end

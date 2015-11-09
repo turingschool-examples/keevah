@@ -53,8 +53,8 @@
       <h3 class="page-header">Related Projects</h3>
     </div>
 
-    <%# <% cache do %>
-    <% @loan_request.related_projects.each do |project| %>
+    <% cache 'related_projects', expires_in: 60.minutes do %>
+      <% @loan_request.related_projects.each do |project| %>
         <div class="col-sm-3 col-xs-6">
           <%= link_to loan_request_path(project) do %>
             <img class="img-responsive portfolio-item" src=<%= project.image_url %> alt="">
@@ -62,12 +62,13 @@
           <% end %>
         </div>
       <% end %>
+    <% end %>
     <%# <% end %>
 
-  </div>
-  <!-- /.row -->
+</div>
+<!-- /.row -->
 
-  <hr>
+<hr>
 
 </div>
 <!-- /.container -->

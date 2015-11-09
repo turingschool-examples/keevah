@@ -1,35 +1,37 @@
 <div class="container">
+  <div class='text-center'>
+    <%= will_paginate @loan_requests, renderer: BootstrapPagination::Rails %>
+  </div>
   <div class="row">
-
-    <div class='text-center'>
-      <%= will_paginate @loan_requests, renderer: BootstrapPagination::Rails %>
-    </div>
-
-      <% @loan_requests.each do |loan_request| %>
-        <div class="col-sm-6 col-md-4 col-lg-4 loan-request">
-          <div class="thumbnail">
-            <img src=<%=loan_request.image_url %>  alt="...">
-            <div class="caption">
-              <div class="thumbnail-label">
-                <h3><%= truncate(loan_request.title, length: 20) %></h3>
-              </div>
-              <p><%= truncate(loan_request.description, length: 30) %></p>
-              <p>
-              <%= link_to "About", loan_request_path(loan_request), class: "btn btn-default lr-about" %>
-              <%= link_to "Contribute $25", cart_path(loan_request: loan_request.id.to_i, amount: 25), method: 'post', class: "lr-contribute btn btn-info pull-right" %>
-              </p>
-              <br>
-              <div class="progress">
-                <div class="progress-bar progress-bar-success progress-bar-striped active" role="progressbar" aria-valuemin="0" aria-valuemax="100" style="width:<%="#{loan_request.progress_percentage}"%>%;">
-                  <%="#{loan_request.progress_percentage}%"%>
-                </div>
+    <% @loan_requests.each do |loan_request| %>
+      <div class="col-sm-6 col-md-4 col-lg-4 loan-request">
+        <div class="thumbnail">
+          <img src=<%=loan_request.image_url %>  alt="...">
+          <div class="caption">
+            <div class="thumbnail-label">
+              <h3><%= truncate(loan_request.title, length: 20) %></h3>
+            </div>
+            <p><%= truncate(loan_request.description, length: 30) %></p>
+            <p>
+            <%= link_to "About", loan_request_path(loan_request), class: "btn btn-default lr-about" %>
+            <%= link_to "Contribute $25", cart_path(loan_request: loan_request.id.to_i, amount: 25), method: 'post', class: "lr-contribute btn btn-info pull-right" %>
+            </p>
+            <br>
+            <div class="progress">
+              <div class="progress-bar progress-bar-success progress-bar-striped active" role="progressbar" aria-valuemin="0" aria-valuemax="100" style="width:<%="#{loan_request.progress_percentage}"%>%;">
+                <%="#{loan_request.progress_percentage}%"%>
               </div>
             </div>
           </div>
         </div>
-      <% end %>
-    <div class='text-center'>
-      <%= will_paginate @loan_requests, renderer: BootstrapPagination::Rails %>
+      </div>
+    <% end %>
+    <div class="row">
+      <div class="col-md-12">
+        <div class='text-center'>
+          <%= will_paginate @loan_requests, renderer: BootstrapPagination::Rails %>
+        </div>
+      </div>
     </div>
   </div>
 </div>
