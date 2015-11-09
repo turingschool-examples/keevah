@@ -3,7 +3,7 @@ class LoanRequestsController < ApplicationController
 
   def index
     @loan_requests = LoanRequest.paginate(page: params[:page], per_page: 9,
-                                          total_entries: LoanRequest.cache_count
+                                          total_entries: LoanRequest.cache_count)
     @categories    = categories
   end
 
