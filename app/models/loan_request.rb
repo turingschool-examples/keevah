@@ -81,15 +81,18 @@ class LoanRequest < ActiveRecord::Base
   end
 
   def related_projects
-    if cache_empty?('related_projects')
+    binding.pry
+    cache_name = "related_projects-#{id}"
+    if cache_empty?(cache_name)
       projects = LoanRequest.joins(:loan_requests_categories)
-                                         .where(loan_requests_categories: {category_id: self.categories.sample.id})
-                                         .limit(4)
-                                         .order("RANDOM()")
-      Rails.cache.write('related_projects', projects, expires_in: 10.minutes)
+        .where(loan_requests_categories: {category_id: self.categories.sample.id})
+        .limit(4)
+        .order("RANDOM()")
+      Rails.cache.write(cache_name, projects, expires_in: 60.minutes)
+
     end
 
-    Rails.cache.fetch('related_projects')
+    Rails.cache.fetch(cache_name)
   end
 
   private

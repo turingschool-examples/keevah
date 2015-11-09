@@ -22,7 +22,8 @@
         </tr>
       </thead>
       <tbody>
-        <% @lender.projects.each do |project| %>
+        <%# <% @lender.projects.each do |project| %>
+        <% @projects.each do |project| %>
       <tr>
         <td class="text-center"><%= @lender.contributed_to(project).newest_contribution %></td>
         <td class="text-center"><%= project.title %></td>

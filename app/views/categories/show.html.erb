@@ -22,5 +22,6 @@
 </div>
 
 <br>
-
-<%= render "shared/lender_thumbnail" %>
+<% cache do%>
+  <%= render "shared/lender_thumbnail" %>
+<% end %>

@@ -43,7 +43,8 @@ test:
 
 staging:
   <<: *default_settings
-  app_name: My Application (Staging)
+  app_name: Scale Up (Staging)
 
 production:
   <<: *default_settings
+  app_name: Scale Up (Production)

@@ -1,9 +1,9 @@
 class LoanRequestsController < ApplicationController
-  before_action :set_loan_request, only: [:update, :show]
+  before_action :set_loan_request, only: [:edit, :update, :show]
 
   def index
     @loan_requests ||= LoanRequest.paginate(:page => params[:page])
-    @categories    ||= Category.all
+    @categories      = categories
   end
 
   def create
@@ -19,12 +19,9 @@ class LoanRequestsController < ApplicationController
     end
   end
 
-  def edit
-    @loan_request = LoanRequest.find(params[:id])
-  end
+  def edit; end
 
-  def show
-  end
+  def show; end
 
   def update
     respond_to do |format|
@@ -53,5 +50,19 @@ class LoanRequestsController < ApplicationController
 
   def set_loan_request
     @loan_request = LoanRequest.find(params[:id])
+  end
+
+
+  def categories
+    if cache_empty?('loan_requests_categories')
+      Rails.cache.write('loan_requests_categories', Category.all, expires_in: 60.minutes)
+    end
+
+    Rails.cache.fetch('loan_requests_categories')
+  end
+
+
+  def cache_empty?(key)
+    Rails.cache.fetch(key).nil?
   end
 end

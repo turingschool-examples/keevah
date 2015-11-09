@@ -20,6 +20,7 @@ class LendersController < ApplicationController
   end
 
   def show
+    @projects = @lender.projects.includes(:user)
     unless current_lender?
       redirect_to root_path, notice: "Access denied"
     end
