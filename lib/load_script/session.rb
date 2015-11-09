@@ -53,7 +53,7 @@ module LoadScript
         :user_browse_loans_requests,
         :new_borrower_create_loan_request,
         :lender_makes_loan,
-        :user_browses_category_pages
+        # :user_browses_category_pages
       ]
     end
 
@@ -72,9 +72,10 @@ module LoadScript
       "Vulnerable Groups"
     ]
 
-      puts 'User browsing category pages'
       log_out
       log_in
+
+      puts 'User browsing category pages'
       session.visit "#{host}/browse"
 
       session.find('#category_dropdown').click
@@ -82,9 +83,10 @@ module LoadScript
     end
 
     def user_browse_loans_requests(email="jorge@example.com", pw="password")
-      puts 'User browsing loan requests'
       log_out
       log_in
+
+      puts 'User browsing loan requests'
 
       session.visit "#{host}/browse"
       session.all(".lr-about").sample.click
