@@ -2,8 +2,9 @@ class LoanRequestsController < ApplicationController
   before_action :set_loan_request, only: [:edit, :update, :show]
 
   def index
-    @loan_requests ||= LoanRequest.paginate(:page => params[:page], total_entries: LoanRequest.cache_count)
-    @categories      = categories
+    @loan_requests = LoanRequest.paginate(page: params[:page], per_page: 9,
+                                          total_entries: LoanRequest.cache_count
+    @categories    = categories
   end
 
   def create

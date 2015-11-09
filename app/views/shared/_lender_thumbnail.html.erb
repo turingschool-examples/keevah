@@ -5,7 +5,6 @@
       <%= will_paginate @loan_requests, renderer: BootstrapPagination::Rails %>
     </div>
 
-    <% cache do %>
       <% @loan_requests.each do |loan_request| %>
         <div class="col-sm-6 col-md-4 col-lg-4 loan-request">
           <div class="thumbnail">
@@ -29,7 +28,6 @@
           </div>
         </div>
       <% end %>
-    <% end %>
     <div class='text-center'>
       <%= will_paginate @loan_requests, renderer: BootstrapPagination::Rails %>
     </div>

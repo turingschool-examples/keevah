@@ -8,7 +8,7 @@ namespace :load_script do
     end
 
 
-    1.times.map do
+    4.times.map do
       Thread.new do
         # if ARGV[1]
           Thread.new(LoadScript::Session.new(ARGV[1]).run)
