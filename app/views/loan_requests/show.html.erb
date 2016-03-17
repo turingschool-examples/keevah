@@ -10,38 +10,38 @@
     <div class="col-lg-12">
       <h1 class="page-header pull-left"><%= @loan_request.title %>
       <small><%= @loan_request.owner %></small>
-      </h1>
-    </div>
+    </h1>
   </div>
-  <!-- /.row -->
+</div>
+<!-- /.row -->
 
-  <!-- Portfolio Item Row -->
-  <div class="row">
+<!-- Portfolio Item Row -->
+<div class="row">
 
-    <div class="col-md-8">
-      <img class="img-responsive" src=<%= @loan_request.image_url %> alt="">
-    </div>
+  <div class="col-md-8">
+    <img class="img-responsive" src=<%= @loan_request.image_url %> alt="">
+  </div>
 
-    <div class="col-md-4">
-      <h3>Loan Overview</h3>
-      <p><%= @loan_request.description %></p>
-      <h3>Loan Details</h3>
-      <ul>
-        <li>Requested by <%= @loan_request.requested_by %></li>
-        <li>Begins Repayment on <%= @loan_request.repayment_begin %></li>
-        <li>Repayment rate: <%= @loan_request.repayment_rate.capitalize %></li>
-        <li>Category: <% @loan_request.categories.each do |cat| %>
-          <%= cat.title.capitalize %>
-        <% end %>
-        </li>
-        <li>Loan Amount: <%= number_to_currency(@loan_request.amount) %></li>
-        <li>Loan Contribution: <%= number_to_currency(@loan_request.contributed) %></li>
-      </ul>
-      <br>
-      <%  if !current_borrower? %>
-      <%= link_to "Contribute $25", cart_path(loan_request: @loan_request.id.to_i, amount: 25), method: 'post', class: "btn btn-info" %>
-      <% end %>
-    </div>
+  <div class="col-md-4">
+    <h3>Loan Overview</h3>
+    <p><%= @loan_request.description %></p>
+    <h3>Loan Details</h3>
+    <ul>
+      <li>Requested by <%= @loan_request.requested_by %></li>
+      <li>Begins Repayment on <%= @loan_request.repayment_begin %></li>
+      <li>Repayment rate: <%= @loan_request.repayment_rate.capitalize %></li>
+      <li>Category: <% @loan_request.categories.each do |cat| %>
+      <%= cat.title.capitalize %>
+    <% end %>
+    </li>
+    <li>Loan Amount: <%= number_to_currency(@loan_request.amount) %></li>
+    <li>Loan Contribution: <%= number_to_currency(@loan_request.contributed) %></li>
+  </ul>
+  <br>
+  <%  if !current_borrower? %>
+    <%= link_to "Contribute $25", cart_path(loan_request: @loan_request.id.to_i, amount: 25), method: 'post', class: "btn btn-info" %>
+  <% end %>
+</div>
 
   </div>
   <!-- /.row -->
@@ -53,19 +53,22 @@
       <h3 class="page-header">Related Projects</h3>
     </div>
 
-    <% @loan_request.related_projects.each do |p| %>
-      <div class="col-sm-3 col-xs-6">
-        <%= link_to loan_request_path(p) do %>
-          <img class="img-responsive portfolio-item" src=<%= p.image_url %> alt="">
-          <p><%= p.title %></p>
-        <% end %>
-      </div>
+    <% cache 'related_projects', expires_in: 60.minutes do %>
+      <% @loan_request.related_projects.each do |project| %>
+        <div class="col-sm-3 col-xs-6">
+          <%= link_to loan_request_path(project) do %>
+            <img class="img-responsive portfolio-item" src=<%= project.image_url %> alt="">
+            <p><%= project.title %></p>
+          <% end %>
+        </div>
+      <% end %>
     <% end %>
+    <%# <% end %>
 
-  </div>
-  <!-- /.row -->
+</div>
+<!-- /.row -->
 
-  <hr>
+<hr>
 
 </div>
 <!-- /.container -->

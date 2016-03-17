@@ -1,12 +1,16 @@
 <div class="container">
   <div class="row">
     <div class="col-md-3 pull-left">
-      <select class="form-control btn-info">
-        <option value="farming">Farming</option>
-        <option value="education">Education</option>
-        <option value="medical">Medical</option>
-        <option value="repair">Women</option>
-      </select>
+      <button class="btn btn-default dropdown-toggle" type="button" id="category_dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+        Filter by Category
+        <span class="caret"></span>
+      </button>
+      <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+        <% @categories.each do |category| %>
+          <li class=<%= category.title %>> <%= link_to category.title, category_path(category)%></li>
+          <li role="separator" class="divider"></li>
+        <% end %>
+      </ul>
     </div>
 
     <%= render "shared/search" %>

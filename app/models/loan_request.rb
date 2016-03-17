@@ -81,6 +81,29 @@ class LoanRequest < ActiveRecord::Base
   end
 
   def related_projects
-    (categories.flat_map(&:loan_requests) - [self]).shuffle.take(4)
+    cache_name = "related_projects-#{id}"
+    if cache_empty?(cache_name)
+      projects = LoanRequest.joins(:loan_requests_categories)
+        .where(loan_requests_categories: {category_id: self.categories.sample.id})
+        .limit(4)
+        .order("RANDOM()")
+      Rails.cache.write(cache_name, projects, expires_in: 60.minutes)
+
+    end
+
+    Rails.cache.fetch(cache_name)
+  end
+
+  def self.cache_count
+    if Rails.cache.fetch('loan_requests_count').nil?
+      Rails.cache.write('loan_requests_count', count)
+    end
+    Rails.cache.fetch('loan_requests_count')
+  end
+
+  private
+
+  def cache_empty?(key)
+    Rails.cache.fetch(key).nil?
   end
 end
